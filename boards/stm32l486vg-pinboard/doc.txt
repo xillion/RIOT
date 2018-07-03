@@ -1,0 +1,5 @@
+/**
+ * @defgroup    boards_pinboard-l486vg STM32 PinBoard-L486VG
+ * @ingroup     boards_common_pinboard
+ * @brief       Support for the STM32 generic pin board
+ */
