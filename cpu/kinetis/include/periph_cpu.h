@@ -114,6 +114,20 @@ typedef uint16_t gpio_t;
  */
 #define PM_NUM_MODES    (1U)
 
+#ifdef RTC
+/* All Kinetis CPUs have exactly one RTC hardware module, except for the KL02
+ * family which don't have an RTC at all */
+/**
+ * @name RTT and RTC configuration
+ * @{
+ */
+#define RTT_NUMOF                    (1U)
+#define RTC_NUMOF                    (1U)
+#define RTT_FREQUENCY                (1)
+#define RTT_MAX_VALUE                (0xffffffff)
+/** @} */
+#endif
+
 #ifndef DOXYGEN
 /**
  * @name    GPIO pin modes
@@ -293,6 +307,10 @@ typedef struct {
 typedef struct {
     /** LPTMR device base pointer */
     LPTMR_Type *dev;
+    /** Input clock frequency */
+    uint32_t base_freq;
+    /** Clock source setting */
+    uint8_t src;
     /** IRQn interrupt number */
     uint8_t irqn;
 } lptmr_conf_t;

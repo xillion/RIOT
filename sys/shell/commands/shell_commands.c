@@ -37,11 +37,11 @@ extern int _heap_handler(int argc, char **argv);
 extern int _ps_handler(int argc, char **argv);
 #endif
 
-#ifdef MODULE_SHT11
+#ifdef MODULE_SHT1X
 extern int _get_temperature_handler(int argc, char **argv);
 extern int _get_humidity_handler(int argc, char **argv);
 extern int _get_weather_handler(int argc, char **argv);
-extern int _set_offset_handler(int argc, char **argv);
+extern int _sht_config_handler(int argc, char **argv);
 #endif
 
 #ifdef MODULE_LTC4150
@@ -108,6 +108,10 @@ extern int _whitelist(int argc, char **argv);
 extern int _blacklist(int argc, char **argv);
 #endif
 
+#ifdef MODULE_GNRC_PKTBUF_CMD
+extern int _gnrc_pktbuf_cmd(int argc, char **argv);
+#endif
+
 #ifdef MODULE_GNRC_RPL
 extern int _gnrc_rpl(int argc, char **argv);
 #endif
@@ -149,11 +153,11 @@ const shell_command_t _shell_command_list[] = {
 #ifdef MODULE_PS
     {"ps", "Prints information about running threads.", _ps_handler},
 #endif
-#ifdef MODULE_SHT11
+#ifdef MODULE_SHT1X
     {"temp", "Prints measured temperature.", _get_temperature_handler},
     {"hum", "Prints measured humidity.", _get_humidity_handler},
     {"weather", "Prints measured humidity and temperature.", _get_weather_handler},
-    {"offset", "Set temperature offset.", _set_offset_handler},
+    {"sht-config", "Get/set SHT10/11/15 sensor configuration.", _sht_config_handler},
 #endif
 #ifdef MODULE_LTC4150
     {"cur", "Prints current and average power consumption.", _get_current_handler},
@@ -198,6 +202,9 @@ const shell_command_t _shell_command_list[] = {
 #endif
 #ifdef MODULE_GNRC_IPV6_BLACKLIST
     {"blacklist", "blacklists an address for receival ('blacklist [add|del|help]')", _blacklist },
+#endif
+#ifdef MODULE_GNRC_PKTBUF_CMD
+    {"pktbuf", "prints internal stats of the packet buffer", _gnrc_pktbuf_cmd },
 #endif
 #ifdef MODULE_GNRC_RPL
     {"rpl", "rpl configuration tool ('rpl help' for more information)", _gnrc_rpl },

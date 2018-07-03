@@ -80,11 +80,13 @@ static const clock_config_t clock_config = {
     },                           \
 }
 #define LPTMR_NUMOF             (1U)
-#define LPTMR_CONFIG {           \
-    {                            \
-        .dev = LPTMR0,           \
-        .irqn = LPTMR0_IRQn,     \
-    }                            \
+#define LPTMR_CONFIG {          \
+    {                           \
+        .dev = LPTMR0,          \
+        .irqn = LPTMR0_IRQn,    \
+        .src = 2,               \
+        .base_freq = 32768u,    \
+    },                          \
 }
 #define TIMER_NUMOF             ((PIT_NUMOF) + (LPTMR_NUMOF))
 
@@ -263,21 +265,6 @@ static const spi_conf_t spi_config[] = {
 #define I2C_0_SDA_PIN                3
 #define I2C_0_SCL_PIN                2
 #define I2C_0_PORT_CFG               (PORT_PCR_MUX(I2C_0_PIN_AF) | PORT_PCR_ODE_MASK)
-/** @} */
-
-/**
-* @name RTT and RTC configuration
-* @{
-*/
-#define RTT_NUMOF                    (1U)
-#define RTC_NUMOF                    (1U)
-#define RTT_DEV                      RTC
-#define RTT_IRQ                      RTC_IRQn
-#define RTT_IRQ_PRIO                 10
-#define RTT_UNLOCK()                 (SIM->SCGC6 |= (SIM_SCGC6_RTC_MASK))
-#define RTT_ISR                      isr_rtc
-#define RTT_FREQUENCY                (1)
-#define RTT_MAX_VALUE                (0xffffffff)
 /** @} */
 
 #ifdef __cplusplus

@@ -6,12 +6,11 @@ ifneq (,$(filter cbor,$(USEMODULE)))
   USEMODULE_INCLUDES += $(RIOTBASE)/sys/cbor/include
 endif
 
-ifneq (,$(filter crypto,$(USEMODULE)))
-  USEMODULE_INCLUDES += $(RIOTBASE)/include/crypto
-endif
-
 ifneq (,$(filter fib,$(USEMODULE)))
   USEMODULE_INCLUDES += $(RIOTBASE)/sys/posix/include
+endif
+ifneq (,$(filter gnrc_netif,$(USEMODULE)))
+  USEMODULE_INCLUDES += $(RIOTBASE)/sys/net/gnrc/netif/include
 endif
 ifneq (,$(filter gnrc_sock,$(USEMODULE)))
   USEMODULE_INCLUDES += $(RIOTBASE)/sys/net/gnrc/sock/include

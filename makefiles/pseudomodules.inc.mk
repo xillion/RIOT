@@ -21,6 +21,7 @@ PSEUDOMODULES += gnrc_netdev_default
 PSEUDOMODULES += gnrc_neterr
 PSEUDOMODULES += gnrc_netapi_callbacks
 PSEUDOMODULES += gnrc_netapi_mbox
+PSEUDOMODULES += gnrc_pktbuf_cmd
 PSEUDOMODULES += gnrc_sixlowpan_border_router_default
 PSEUDOMODULES += gnrc_sixlowpan_default
 PSEUDOMODULES += gnrc_sixlowpan_iphc_nhc
@@ -93,6 +94,11 @@ PSEUDOMODULES += adc121c
 # include variants of SX127X drivers as pseudo modules
 PSEUDOMODULES += sx1272
 PSEUDOMODULES += sx1276
+
+# include variants of SHT1X drivers as pseudo modules
+PSEUDOMODULES += sht10
+PSEUDOMODULES += sht11
+PSEUDOMODULES += sht15
 
 # include variants of Si114x drivers as pseudo modules
 PSEUDOMODULES += si1145

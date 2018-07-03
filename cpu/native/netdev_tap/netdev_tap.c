@@ -10,7 +10,7 @@
  */
 
 /*
- * @ingroup netdev
+ * @ingroup drivers_netdev
  * @{
  * @brief   Low-level ethernet driver for tap interfaces
  * @author  Kaspar Schleiser <kaspar@schleiser.de>
@@ -300,7 +300,8 @@ static int _send(netdev_t *netdev, const iolist_t *iolist)
 
 void netdev_tap_setup(netdev_tap_t *dev, const netdev_tap_params_t *params) {
     dev->netdev.driver = &netdev_driver_tap;
-    strncpy(dev->tap_name, *(params->tap_name), IFNAMSIZ);
+    strncpy(dev->tap_name, *(params->tap_name), IFNAMSIZ - 1);
+    dev->tap_name[IFNAMSIZ - 1] = '\0';
 }
 
 static void _tap_isr(int fd, void *arg) {

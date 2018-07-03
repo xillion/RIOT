@@ -129,13 +129,13 @@ endif
 WERROR ?= 1
 export WERROR
 ifeq ($(WERROR),1)
-  CFLAGS += -Wall -Werror -Wextra
+  CFLAGS += -Werror
 endif
 
 WPEDANTIC ?= 0
 export WPEDANTIC
 ifeq ($(WPEDANTIC),1)
-    CFLAGS += -Wpedantic -pedantic-errors
+  CFLAGS += -Wpedantic
 endif
 
 # remove this once codebase is adapted
@@ -229,7 +229,7 @@ export PREFIX ?= $(if $(TARGET_ARCH),$(TARGET_ARCH)-)
 # Add standard include directories
 INCLUDES += -I$(RIOTBASE)/core/include -I$(RIOTBASE)/drivers/include -I$(RIOTBASE)/sys/include
 INCLUDES += -I$(RIOTCPU)/$(CPU)/include
-INCLUDES += -I$(RIOTBOARD)/$(BOARD)/include
+INCLUDES += $(addprefix -I,$(wildcard $(RIOTBOARD)/$(BOARD)/include))
 
 # process provided features
 -include $(RIOTBOARD)/$(BOARD)/Makefile.features
@@ -594,6 +594,10 @@ ifneq (,$(filter iotlab-m3 wsn430-v1_3b wsn430-v1_4,$(BOARD)))
   ifneq (,$(filter iotlab-%,$(MAKECMDGOALS)))
     include $(RIOTBASE)/dist/testbed-support/Makefile.iotlab
   endif
+endif
+ifneq (,$(IOTLAB_NODE))
+  # iot-lab serial and flasher
+  include $(RIOTBASE)/dist/testbed-support/makefile.iotlab.single.inc.mk
 endif
 
 # Include desvirt Makefile
