@@ -74,9 +74,9 @@ extern "C" {
 #define CLOCK_AHB_DIV       RCC_CFGR_HPRE_DIV1
 #define CLOCK_AHB           (CLOCK_CORECLOCK / 1)
 #define CLOCK_APB1_DIV      RCC_CFGR_PPRE1_DIV1
-#define CLOCK_APB1          (CLOCK_CORECLOCK / 4)
+#define CLOCK_APB1          (CLOCK_CORECLOCK / 1)
 #define CLOCK_APB2_DIV      RCC_CFGR_PPRE2_DIV1
-#define CLOCK_APB2          (CLOCK_CORECLOCK / 2)
+#define CLOCK_APB2          (CLOCK_CORECLOCK / 1)
 /** @} */
 
 
@@ -114,7 +114,7 @@ static const timer_conf_t timer_config[] = {
 static const uart_conf_t uart_config[] = {
     {
         .dev        = USART1,/**/
-        .rcc_mask   = RCC_APB2ENR1_USART1EN,
+        .rcc_mask   = RCC_APB2ENR_USART1EN,
         .rx_pin     = GPIO_PIN(PORT_D, 9),
         .tx_pin     = GPIO_PIN(PORT_D, 8),
         .rx_af      = GPIO_AF7,
@@ -128,7 +128,7 @@ static const uart_conf_t uart_config[] = {
     },
         {
         .dev        = USART2,
-        .rcc_mask   = RCC_APB1ENR1_USART3EN,
+        .rcc_mask   = RCC_APB1ENR1_USART2EN,
         .rx_pin     = GPIO_PIN(PORT_D, 9),
         .tx_pin     = GPIO_PIN(PORT_D, 8),
         .rx_af      = GPIO_AF7,
