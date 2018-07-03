@@ -22,8 +22,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#define CPU_MODEL_STM32L486VG
-
 #include "cpu.h"
 #include "periph_conf.h"
 
@@ -39,6 +37,10 @@ extern "C" {
 #define XTIMER_BACKOFF      (10)
 /** @} */
 
+#define BTN0_PIN                    GPIO_PIN(0, 17)
+#define BTN0_MODE                   GPIO_IN
+#define BTN1_PIN                    GPIO_PIN(0, 26)
+#define BTN1_MODE GPIO_IN
 
 void board_init(void);
 
