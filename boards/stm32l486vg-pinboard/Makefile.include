@@ -9,5 +9,4 @@ export CPU_MODEL = stm32l486vg
 PORT_LINUX ?= /dev/ttyUSB0
 PORT_DARWIN ?= $(firstword $(sort $(wildcard /dev/tty.usbmodem*)))
 
-# load the common Makefile.include for Nucleo boards
-include $(RIOTBOARD)/common/nucleo144/Makefile.include
+
